@@ -40,7 +40,7 @@ struct SideViewContents: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.leading, 40)
-        .padding(.top, 80)
+        .padding(.top, 70)
         .padding(.bottom, 30)
     }
 }
