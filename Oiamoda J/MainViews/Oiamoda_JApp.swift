@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct Oiamoda_JApp: App {
+    @StateObject private var favoritesManager = FavoritesManager()
+    
+    
     var body: some Scene {
+        
+        
         WindowGroup {
             SplashScreenView()
+                .environmentObject(FavoritesManager())
+
         }
     }
 }
+
+
