@@ -9,6 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     
+    // Access shared manager
+    @EnvironmentObject var favoritesManager: FavoritesManager
+    
     var body: some View {
         VStack(spacing: 15) {
             TopBarView()
@@ -17,6 +20,7 @@ struct HomeView: View {
                 DetailsScroll()
             }
             .background(Color.bg)
+            
         }
         .padding([.leading, .trailing], 15)
         .background(Color.bg)
@@ -57,6 +61,7 @@ struct TopBarView: View {
 }
 
 struct DetailsScroll: View {
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             HorizontalImageScroll()
@@ -130,6 +135,11 @@ struct ExploreButton: View {
 struct ProductCardView: View {
     let item: row
     
+    // Access shared state
+    @EnvironmentObject var favoritesManager: FavoritesManager
+    
+    
+    
     var body: some View {
         VStack(spacing: 10) {
             Image(item.image)
@@ -147,9 +157,9 @@ struct ProductCardView: View {
                 Spacer()
                 
                 Button(action: {
-                    
+                    addToFavorites(item)
                 }) {
-                    Image(systemName: "heart")
+                    Image(systemName: favoritesManager.isFavorite(item) ? "heart.fill" :"heart")
                         .accentColor(.black)
                 }
             }
@@ -158,7 +168,22 @@ struct ProductCardView: View {
         .background(Color.white)
         .cornerRadius(10)
     }
+    
+    
+    //Add item to the fav list if not already present
+    private func addToFavorites(_ item: row) {
+        if favoritesManager.isFavorite(item) {
+            
+            favoritesManager.remove(item)
+            
+        } else {
+            favoritesManager.add(item)
+        }
+        
+    }
+    
 }
+
 
 struct SectionHeader: View {
     let title: String
@@ -179,7 +204,7 @@ struct type: Identifiable {
     var rows: [row]
 }
 
-struct row: Identifiable {
+struct row: Identifiable, Equatable {
     var id: Int
     var name: String
     var price: String
@@ -194,4 +219,5 @@ var datas = [
 
 #Preview {
     HomeView()
+        .environmentObject(FavoritesManager())
 }

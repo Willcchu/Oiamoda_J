@@ -6,13 +6,22 @@
 //
 
 import SwiftUI
+import Combine
 
-struct FavoritesManager: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class FavoritesManager: ObservableObject {
+    @Published var favorites: [row] = [] // Shared favorites list
+    
+    func add(_ item: row) {
+        if !favorites.contains(where: { $0.id == item.id }) {
+            favorites.append(item)
+        }
     }
-}
-
-#Preview {
-    FavoritesManager()
+    
+    func remove(_ item: row) {
+        favorites.removeAll { $0.id == item.id }
+    }
+    
+    func isFavorite(_ item: row) -> Bool {
+        favorites.contains(item)
+    }
 }

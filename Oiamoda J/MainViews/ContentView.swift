@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var tabSelection = 1
     @State var presentSideMenu = false
+    @StateObject private var favoritesManager = FavoritesManager()
     
     var body: some View {
         
@@ -73,7 +74,7 @@ struct ContentView: View {
                         HomeView()
                             .tag(1)
                         
-                        CartView()
+                        FavoritesView()
                             .tag(2)
                         
                         ShopAllView()
@@ -113,6 +114,7 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(FavoritesManager())
 }
 
 
