@@ -19,16 +19,31 @@ struct FavoritesView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                
-                Text("Likes")
-                    .font(.largeTitle)
-                    .padding()
-                
+                                
                 if favoritesManager.favorites.isEmpty {
-                    Text("No favorites yet")
+                    
+                    Image(systemName: "bolt.heart")
+                        .resizable()
+                        .frame(width: 100, height: 90)
+                        .foregroundColor(.gray)
+                    
+                    Text("Likes")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                        .padding()
+                    
+                    Text("It seems you don't have any likes yet :(")
+                        .font(.subheadline)
                         .foregroundColor(.gray)
                         .padding()
                 } else {
+                    
+                    Image(systemName: "heart.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.black)
+                        .padding()
+                    
                     ScrollView {
                         VStack(spacing: 10) {
                             ForEach(favoritesManager.favorites) { item in
@@ -47,6 +62,7 @@ struct FavoritesView: View {
 
 struct FavoriteRow: View {
     let item: row
+    @EnvironmentObject var favoritesManager: FavoritesManager
     
     var body: some View {
         
@@ -69,6 +85,16 @@ struct FavoriteRow: View {
                 }
                 
                 Spacer()
+                
+                
+                //add a button to unlike the item from fav page
+                Button(action: {
+                    favoritesManager.remove(item)
+                }) {
+                    Image(systemName: "heart.fill")
+                        .foregroundColor(.black)
+                        .padding()
+                }
             }
             .padding()
         }

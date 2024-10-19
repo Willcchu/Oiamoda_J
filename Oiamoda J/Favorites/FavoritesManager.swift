@@ -9,7 +9,9 @@ import SwiftUI
 import Combine
 
 class FavoritesManager: ObservableObject {
-    @Published var favorites: [row] = [] // Shared favorites list
+    
+    // Shared favorites list
+    @Published var favorites: [row] = []
     
     func add(_ item: row) {
         if !favorites.contains(where: { $0.id == item.id }) {

@@ -12,15 +12,78 @@ struct SideViewContents: View {
     
     var body: some View {
         ZStack {
-            VStack(alignment: .leading, spacing: 0) {
+            
+            Color.lightgray.ignoresSafeArea()
+            
+            VStack(alignment: .leading, spacing: 80) {
                 SideMenuTopView()
-                VStack {
-                    Text("Side Menu")
-                        .foregroundColor(.white)
-                }.frame( maxWidth: .infinity, maxHeight: .infinity)
+                
+                //Change currency
+                Button(action: {
+                    //action to change currency
+                }) {
+                    HStack {
+                        Image(systemName: "dollarsign.circle")
+                            .imageScale(.large)
+                        Text("Change Currency")
+                            .font(.headline)
+                    }
+                    .foregroundColor(.white)
+                }
+                
+                //Change language
+                Button(action: {
+                    //Action to change language
+                    
+                }) {
+                    HStack{
+                        Image(systemName: "globe")
+                            .imageScale(.large)
+                        Text("Change Language")
+                            .font(.headline)
+                    }
+                    .foregroundStyle(.white)
+                }
+                
+                //Tracking orders
+                Button(action: {
+                    //Navigate to Order tracking
+                }) {
+                    HStack  {
+                        Image(systemName: "shippingbox")
+                            .imageScale(.large)
+                        Text("Order Tracking")
+                            .font(.headline)
+                    }
+                    .foregroundStyle(.white)
+                }
+                
+                //Dark mode
+                Toggle(isOn: .constant(false)) {
+                    HStack{
+                        Image(systemName: "moon.stars.fill")
+                            .imageScale(.large)
+                        Text("Dark Mode")
+                            .font(.headline)
+                    }
+                }
+                .foregroundStyle(.white)
+                .padding(.trailing, 30)
+                
+                Spacer()
+                
+                HStack{
+                    
+                    Spacer()
+                    
+                    Text("Developed by: C.C. @2024")
+                        .padding([.bottom, .trailing], 15)
+                        .font(.caption)
+                        .foregroundStyle(.white)
+                }
             }
-            .frame(maxWidth: .infinity)
-            .background(.lightgray)
+            .padding(.leading, 20)
+            .frame( maxWidth: .infinity, maxHeight: .infinity)
         }
     }
     
@@ -39,8 +102,14 @@ struct SideViewContents: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .padding(.leading, 40)
-        .padding(.top, 70)
+        .padding(.leading, 5)
+        .padding(.top, 60)
         .padding(.bottom, 30)
     }
 }
+
+#Preview {
+    SideViewContents(presentSideMenu: .constant(true))
+}
+
+

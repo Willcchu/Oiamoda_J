@@ -11,7 +11,19 @@ struct CartView: View {
     var body: some View {
         ZStack{
             Color("Bg").ignoresSafeArea()
-            Text("this is Cart page")
+            
+            VStack{
+                Image(systemName: "cart.badge.plus")
+                    .resizable()
+                    .frame(width: 100, height: 80)
+                    .foregroundColor(.gray)
+                
+                Text("Empty Bag")
+                    .foregroundColor(.gray)
+                    .font(.headline)
+                    .padding()
+                
+            }
         }
     }
 }

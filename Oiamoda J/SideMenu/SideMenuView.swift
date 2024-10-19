@@ -36,3 +36,5 @@ struct SideMenuView<RenderView: View>: View {
         .animation(.easeInOut, value: isShowing)
     }
 }
+
+
