@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 
 @main
 struct Oiamoda_JApp: App {
     @StateObject private var favoritesManager = FavoritesManager()
     
+    init() {
+        FirebaseApp.configure() 
+    }
     
     var body: some Scene {
         

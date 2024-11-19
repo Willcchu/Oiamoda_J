@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var tabSelection = 1
     @State var presentSideMenu = false
     @StateObject private var favoritesManager = FavoritesManager()
+    @StateObject private var authViewModel = AuthViewModel()
     
     var body: some View {
         
@@ -80,7 +81,8 @@ struct ContentView: View {
                         ShopAllView()
                             .tag(3)
                         
-                        AccountView()
+                        AccountTabView()
+                            .environmentObject(authViewModel)
                             .tag(4)
                         
                     }
@@ -111,6 +113,20 @@ struct ContentView: View {
     }
     
 }
+
+struct AccountTabView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
+    var body: some View {
+        if authViewModel.isSignedIn {
+            MyAccountView()
+        } else {
+            SignInView()
+        }
+    }
+}
+
+
 
 #Preview {
     ContentView()
