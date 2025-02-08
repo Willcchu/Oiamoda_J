@@ -34,9 +34,6 @@ struct SignInView: View {
                         .frame(width: 80, height: 80)
                         .foregroundColor(.blue)
                     
-                    Text("Welcome Back")
-                        .font(Font.custom("PlayfairDisplay-Bold", size: 35))
-                        .foregroundColor(.primary)
                 }
                 .padding(.bottom, 30)
                 
@@ -84,7 +81,7 @@ struct SignInView: View {
                 
                 // MARK: - 跳转注册页面
                 NavigationLink(destination: RegisterView()) {
-                    Text("Don't have an account? Register")
+                    Text("Create an account")
                         .font(.system(size: 16))
                         .foregroundColor(.gray)
                         .underline()

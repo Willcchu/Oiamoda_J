@@ -21,9 +21,7 @@ struct ContentView: View {
                     
                     ZStack{
                         
-                        
                         //title
-                        
                         
                         Text("Oiamoda J").font(.custom("PlayfairDisplay-Bold", size: 30))
                         
